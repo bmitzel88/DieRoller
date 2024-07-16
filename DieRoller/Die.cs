@@ -14,7 +14,7 @@ namespace DieRoller
         /// <summary>
         /// The current value that was rolled
         /// </summary>
-        public byte RolledValue { get; set; }
+        public byte RolledValue { get; private set; }
 
         /// <summary>
         /// True if the die is currently held

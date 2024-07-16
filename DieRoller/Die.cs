@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +12,13 @@ namespace DieRoller
     /// </summary>
     public class Die
     {
+        private static Random _random;
+
+        static Die()
+        {
+            _random = new Random();
+        }
+
         /// <summary>
         /// Creates the die and rolls it to start with a random number
         /// </summary>
@@ -40,15 +48,28 @@ namespace DieRoller
         /// <returns>Returns the new RolledValue</returns>
         public byte Roll() 
         {
-            // Generate random number
-            Random random = new Random();
-            byte newValue = (byte)random.Next(1, 7);
+            
 
-            // Set to RolledValue
-            RolledValue = newValue; 
-            // Return RolledValue
-            return RolledValue;
-            throw new NotImplementedException();
+
+            // Check if the die is held by another player
+            if (!isHeld)
+            {
+
+                // Generate random number
+                byte newValue = (byte)_random.Next(1, 7);
+
+
+                // Set to RolledValue
+                RolledValue = newValue;
+                // Return RolledValue
+                return RolledValue;
+                throw new NotImplementedException();
+            }
+            else 
+            {
+                return RolledValue;
+            }
+            
         }
 
     }
